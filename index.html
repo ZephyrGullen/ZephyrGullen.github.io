@@ -1,1 +1,460 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teddy</title>
+    <!-- SEO -->
+    <meta name="yandex-verification" content="6d6eae9d533ef680" />
+    <!-- Security -->
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <style>
+        /* Modern CSS reset and variables */
+        :root {
+            /* Claude dark blue / grey theme
+            --text-color: #1a202c;
+            --primary-color: #2d3748;
+            --secondary-color: #4a5568;
+            --accent-color: #4299e1;
+            --background-color: #f7fafc;
+            */
+            /* Purple theme 
+                - https://coolors.co/palette/10002b-240046-3c096c-5a189a-7b2cbf-9d4edd-c77dff-e0aaff
+            --text-color: #10002B; /* very dark * /
+            --primary-color: #240046; /* medium dark * /
+            --secondary-color: #3C096C; /* dark * /
+            --accent-color: #C77DFF; /* light * /
+            --background-color: #E0AAFF; /* very light * /
+            */
+            /* Red theme 
+                - https://coolors.co/palette/2b0000-4f0000-740000-980000-b50000-d30000-eb1d1d-f50f0f-ff0000
+                - https://coolors.co/palette/9c191b-ac1c1e-bd1f21-d02224-dd2c2f-e35053-e66063-ec8385-f1a7a9-f6cacc
+            */
+            --text-color: #2B0000;
+            --primary-color: #740000;
+            --secondary-color: #B50000;
+            --accent-color: #E35053;
+            --background-color: #F6CACC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main content styles */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        ul, li {
+            list-style-position: outside;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-card h3,
+        .project-card h3,
+        .experience-card h3 {
+            color: var(--secondary-color);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2b6cb0;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+        }
+        .experience-card h3 {
+            margin-bottom: 0;
+        }
+        .experience-date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            width: 50%;
+            min-width: 50%;
+            -webkit-text-fill-color: inherit;
+            text-decoration: none;
+            pointer-events: none;
+        }
+        .experience-card:last-child {
+            margin-bottom: 0;
+        }
+        .experience-company-and-date {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 0.25rem;
+        }
+        .experience-description {
+            margin: 0.5rem 0;
+        }
+        .experience-additional-entry {
+            list-style-type: disc;
+            width: 100%;
+        }
+        .experience-header {
+            display: flex;
+            align-items: center;
+        }
+        .experience-additional-entry .experience-company-and-date {
+            display: flex;
+            width: 100%;
+        }
+        .experience-additional-entry .experience-job-title, 
+        .experience-additional-entry .experience-company, 
+        .experience-additional-entry .experience-date {
+            font-weight: bold;
+            margin: 0;
+            width: fit-content;
+        }
+        .experience-additional-entry .experience-company {
+            margin-left: 5px;
+            margin-right: auto;
+        }
+        .experience-additional-entry .experience-date {
+            font-weight: normal;
+            margin-left: auto;
+        }
+        .experience-additional-entry:not(:first-of-type) .experience-job-title::after {
+            content: " at  ";
+            font-weight: normal;
+        }
+        .experience-additional-entry .experience-company::after {
+            content: " ";
+        }
+        .experience-additional-entry .experience-description:last-of-type {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .expertise-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Edward (Teddy) Middleton-Smith</h1>
+        <p>Software Engineer | ERP Systems and Business Process Automation</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="expertise">
+            <h2>Areas of Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h3>ERP Systems</h3>
+                    <p>Expert in ERPNext customisation, UK accounting compliance, and enterprise system migrations. Specialised in retail and manufacturing sectors with integrated e-commerce solutions.</p>
+                </div>
+                <div class="expertise-card">
+                    <h3>Data Systems Architecture</h3>
+                    <p>Design and optimisation of high-performance database systems, API integrations, and automated reporting frameworks. Focused on scalable, maintainable solutions with actionable insights.</p>
+                </div>
+                <div class="expertise-card">
+                    <h3>Process Automation</h3>
+                    <p>Strategic automation and workflow redesign for operational efficiency. Experience spans inventory management, logistics, and financial operations in trade and automotive industries.</p>
+                </div>
+            </div> 
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Enterprise ERP & E-commerce System</h3>
+                    <p>Enhanced ERPNext platform with UK-specific accounting features and e-commerce integration. Supports multi-channel retail operations with automated order processing.</p>
+                    <p style="margin: 0.5rem 0"><strong>Key Features:</strong></p>
+                    <ul style="margin: 1rem 0; list-style-position: inside;">
+                        <li>UK tax compliance and reporting modules</li>
+                        <li>Real-time inventory synchronisation</li>
+                        <li>Multi-storefront management</li>
+                        <li>Automated order fulfillment</li>
+                    </ul>
+                    <p style="margin-bottom: 1rem"><strong>Technologies:</strong> Python, MySQL / MariaDB, Docker</p>
+                    <a href="https://auth.sandbox.teddy.org.uk?target=https%3A%2F%2Ferp.sandbox.partsenterprise.partsltd.co.uk" class="button">Demo ERP</a>
+                    <a href="https://store.sandbox.partsenterprise.partsltd.co.uk" class="button">Demo Store</a>
+                </div>
+                <div class="project-card">
+                    <h3>partsERP Core Framework</h3>
+                    <p>A robust, open-source ERP framework showcasing system architecture and development practices. Over 100K lines of production-grade code.</p>
+                    <p style="margin: 0.5rem 0"><strong>Key Features:</strong></p>
+                    <ul style="margin: 1rem 0; list-style-position: inside;">
+                        <li>Data integrity verification</li>
+                        <li>Authentication and role-based access control</li>
+                        <li>Custom reporting API</li>
+                        <li>Database abstraction layer and unit test coverage</li>
+                    </ul>
+                    <p style="margin-bottom: 1rem"><strong>Technologies:</strong> Python - Flask, MySQL / MariaDB, JavaScript</p>
+                    <a href="https://github.com/Teddy-1024/demo_partsERP.git" class="button">View on GitHub</a>
+                    <a href="https://auth.sandbox.teddy.org.uk?target=https%3A%2F%2Fsandbox.partsERP.teddy.org.uk/" class="button">Demo Site</a>
+                </div>
+                <div class="project-card">
+                    <h3>Financial Data Reconciliation Tool</h3>
+                    <p>VBA Excel automation that simplifies complex data processing between multiple spreadsheets.</p>
+                    <p style="margin: 0.5rem 0"><strong>Key Features:</strong></p>
+                    <ul style="margin: 1rem 0; list-style-position: inside;">
+                        <li>Multi-system transaction matching</li>
+                        <li>Configurable validation rules</li>
+                        <li>Automated error detection</li>
+                        <li>Audit trail generation</li>
+                    </ul>
+                    <p style="margin-bottom: 1rem"><strong>Technologies:</strong> VBA, Excel Object Model</p>
+                    <a href="https://github.com/Teddy-1024/demo_VBA.git" class="button">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-card">
+                <h3>Director & Principal Solutions Architect</h3>
+                <div class="experience-company-and-date">
+                    <p class="experience-company">Precision And Research Technology Systems Limited</p>
+                    <p class="experience-date">08/2021 - present</p>
+                </div>
+                <ul class="experience-description">
+                    <li>Improved ROI by 30% through implementing a fraud-preventing process and enforcement software system for a 9-figure engineering development budget</li>
+                    <li>Decreased query execution time by 90% for a system accessed millions of times daily by optimising database indexing strategies</li>
+                    <li>Designed an integrated e-commerce platform with custom ERP software for automated order management across multiple retail marketplaces</li>
+                    <li>Optimised processes, software, and data systems to save tens of annual work units</li>
+                    <li>Crafted monthly interactive training modules for analysts on task automation using best practices</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <h3>Software & Systems Engineer</h3>
+                <div class="experience-company-and-date">
+                    <p class="experience-company">4 Shires Builders Merchants LLP</p>
+                    <p class="experience-date">05/2019 - 09/2022</p>
+                </div>
+                <ul class="experience-description">
+                    <li>Increased web presence by 2000% and visitor to sale conversion by 9000% with a new e-commerce site, SEO, and social media marketing</li>
+                    <li>Improved delivery rate by 20% and fuel efficiency by 30% through logistics restructuring</li>
+                    <li>Analysed product and segment profitability, implementing cross-selling and upselling strategies</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <h3>Sales Assistant</h3>
+                <div class="experience-company-and-date">
+                    <p class="experience-company">4 Shires Builders Merchants LLP</p>
+                    <p class="experience-date">06/2016 - 04/2019</p>
+                </div>
+                <ul class="experience-description">
+                    <li>Cultivated longstanding business relationships and customer service satisfaction</li>
+                    <li>Engineered storage systems and reorganised warehouse for over 60% greater stock capacity</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <h3>Additional Experience</h3>
+                <ul style="margin: 1rem 0; list-style-position: inside;">
+                    <li class="experience-additional-entry">
+                        <div class="experience-company-and-date">
+                            <p class="experience-job-title">STEM Tutor</p>
+                            <p class="experience-date">03/2016 - 09/2021</p>
+                        </div>
+                        <p class="experience-description">Adopted nuanced techniques for diverse personalities and learning styles, teaching GCSE to MSc level.</p>
+                    </li>
+                    <li class="experience-additional-entry">
+                        <div class="experience-company-and-date">
+                            <p class="experience-job-title">Systems Analysis Intern</p>
+                            <p class="experience-company">Cummins Inc.</p>
+                            <p class="experience-date">07/2016</p>
+                        </div>
+                        <p class="experience-description">Programmed and presented a structural optimisation method for a steel I-beam crane boom.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="expertise-card">
+                <p>Interested in discussing potential opportunities? Feel free to reach out:</p>
+                <ul>
+                    <li>Email: teddy@partsltd.co.uk</li>
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/teddyms/">linkedin.com/in/teddyms</a></li>
+                    <li>GitHub: <a href="https://github.com/Teddy-1024/">github.com/Teddy-1024</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Lord Edward Middleton-Smith. All rights reserved.</p>
+        <p>For ERP services, please visit my <a href="https://www.partsltd.co.uk/">company website</a>.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active state to nav items on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
